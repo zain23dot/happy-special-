@@ -407,11 +407,22 @@ input[type="password"]:focus {
     -webkit-text-fill-color: transparent;
     font-weight: bold;
 }
-.avatar-container{
-    width: 170px;
-    height: 170px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
+/* Custom Polaroid Fitting for the Final Reveal Image */
+.avatar-container {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto 15px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    background: #fff;
+    padding: 8px;
+}
+
+.polaroid-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    display: block;
 }
