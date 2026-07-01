@@ -1,0 +1,409 @@
+/* --- Global Variables & Smooth Theme --- */
+:root {
+    --primary: #ff6b8b;
+    --primary-hover: #ff4771;
+    --bg-gradient: linear-gradient(135deg, #ffeef2 0%, #f3e5f5 100%);
+    --card-bg: rgba(255, 255, 255, 0.88);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- Floating Decorative Background Particles --- */
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart-particle {
+    position: absolute;
+    bottom: -10%;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    animation: upwardFloat 6s linear infinite;
+}
+
+@keyframes upwardFloat {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- Container Stages Structure --- */
+.stage {
+    display: none;
+    width: 100%;
+    z-index: 5;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.active-stage {
+    display: flex;
+    animation: fadeInStage 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fadeInStage {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- Micro-Interactions Cards UI --- */
+.glass-card {
+    background: var(--card-bg);
+    border-radius: 30px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 50px rgba(255, 107, 139, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 60px rgba(255, 107, 139, 0.22);
+}
+
+.text-center { text-align: center; }
+
+/* --- Typography & Custom Font Layouts --- */
+.title-text {
+    font-size: 1.9rem;
+    color: #3a3a3a;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.35rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.cursive-text {
+    font-family: 'Sacramento', cursive;
+    font-size: 3rem;
+    color: #9c27b0;
+}
+
+.small-text {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+}
+
+.closing-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #616161;
+    margin: 20px 0;
+    font-size: 1.1rem;
+}
+
+/* --- Media Image Frames --- */
+.image-frame {
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.hero-img, .bouquet-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* --- Interactive Action Buttons --- */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 6px 15px rgba(255, 107, 139, 0.35);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-secondary {
+    background: #f5f5f7;
+    color: #646464;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pop-hover:hover {
+    transform: scale(1.06);
+    background: var(--primary-hover);
+}
+
+.escape-btn {
+    position: relative;
+    transition: left 0.1s ease, top 0.1s ease;
+}
+
+/* --- Inputs CSS --- */
+input[type="password"] {
+    width: 120px;
+    padding: 12px;
+    border: 2px solid #ffd3de;
+    border-radius: 15px;
+    margin: 20px 0;
+    outline: none;
+    text-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 5px;
+    transition: border-color 0.3s;
+}
+input[type="password"]:focus {
+    border-color: var(--primary);
+}
+
+/* --- CSS Animations Archive --- */
+.pulse-anim {
+    animation: pulsingButton 1.8s infinite;
+}
+@keyframes pulsingButton {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 139, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 107, 139, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 107, 139, 0); }
+}
+
+.floating-text {
+    animation: dynamicFloat 3s ease-in-out infinite alternate;
+}
+@keyframes dynamicFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+/* --- Stage 1: Premium Custom Loader --- */
+.heart-loader {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.heart-loader div {
+    position: absolute;
+    background: var(--primary);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    animation: heartLoaderAnim 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+.heart-loader div:nth-child(1) { top: 32px; left: 32px; animation-delay: 0s; }
+.heart-loader div:nth-child(2) { top: 32px; left: 16px; animation-delay: -0.12s; }
+.heart-loader div:nth-child(3) { top: 16px; left: 32px; animation-delay: -0.24s; }
+@keyframes heartLoaderAnim {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+.dynamic-glow {
+    margin-top: 20px;
+    animation: textGlow 1.5s ease-in-out infinite alternate;
+}
+@keyframes textGlow { from { opacity: 0.6; } to { opacity: 1; } }
+
+/* --- Stage 3: Game Playground Balloons --- */
+.balloon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin: 30px 0;
+}
+.balloon {
+    font-size: 3.8rem;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: floatBalloons 4s ease-in-out infinite alternate;
+}
+.balloon:hover { transform: scale(1.15); }
+.balloon:nth-child(2n) { animation-delay: -1s; animation-duration: 3.5s; }
+.balloon:nth-child(3n) { animation-delay: -2s; animation-duration: 4.5s; }
+
+@keyframes floatBalloons {
+    0% { transform: translateY(0) rotate(-3deg); }
+    100% { transform: translateY(-15px) rotate(3deg); }
+}
+
+.reveal-msg-box {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #7b1fa2;
+    min-height: 45px;
+}
+
+/* --- Stage 4: Candle Mechanics --- */
+.cake-container {
+    margin: 40px 0;
+    position: relative;
+    display: inline-block;
+}
+.cake-base { font-size: 6rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08)); }
+.candle-stick {
+    width: 8px;
+    height: 30px;
+    background: linear-gradient(#ffb199, #ff7676);
+    margin: 0 auto;
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+.candle-flame {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: dancingFlame 0.6s ease-in-out infinite alternate;
+}
+@keyframes dancingFlame {
+    0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+    100% { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+}
+
+/* --- Stage 6: Modular Vector Box Envelope --- */
+.envelope-container {
+    width: 150px;
+    height: 100px;
+    margin: 40px auto;
+    position: relative;
+    background: #ffb4c4;
+    border-radius: 0 0 12px 12px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
+}
+.envelope-container:hover { transform: scale(1.08); }
+
+.env-top-flap {
+    position: absolute;
+    top: 0; left: 0; width: 0; height: 0;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-top: 55px solid #ff9db2;
+    transform-origin: top;
+    transition: transform 0.4s ease-in-out;
+    z-index: 4;
+}
+.env-left-flap {
+    position: absolute; top: 0; left: 0; width: 0; height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 80px solid #ffc2cf;
+    z-index: 3;
+    border-radius: 0 0 0 12px;
+}
+.env-right-flap {
+    position: absolute; top: 0; right: 0; width: 0; height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-right: 80px solid #ffc2cf;
+    z-index: 3;
+    border-radius: 0 0 12px 0;
+}
+.env-bottom-flap {
+    position: absolute; bottom: 0; left: 0; width: 150px; height: 0;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-bottom: 55px solid #ffa6ba;
+    z-index: 2;
+    border-radius: 0 0 12px 12px;
+}
+.env-paper {
+    position: absolute; top: 15px; left: 10px; width: 130px; height: 70px;
+    background: #fff;
+    border-radius: 6px;
+    z-index: 1;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #e0627c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Open states triggered via Javascript class additions */
+.open-flap { transform: rotateX(180deg); z-index: 0; }
+.lift-paper { transform: translateY(-45px); }
+
+.letter-sheet {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid #ffe3eb;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+.letter-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4f4f4f;
+}
+
+/* --- Stage 7: Gift Box Reveal Effects --- */
+.gift-box-wrapper {
+    font-size: 6.5rem;
+    margin: 45px 0;
+    cursor: pointer;
+    display: inline-block;
+    animation: bouncingPresent 1.2s infinite alternate cubic-bezier(0.25, 1, 0.5, 1);
+}
+@keyframes bouncingPresent {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-12px) scale(1.04); }
+}
+
+.rainbow-text {
+    background: linear-gradient(45deg, #ff4081, #9c27b0, #3f51b5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
