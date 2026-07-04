@@ -74,16 +74,16 @@ body {
 .glass-card {
     background: var(--card-bg);
     border-radius: 30px;
-    padding: 40px 30px;
+    padding: 35px 25px;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     box-shadow: 0 20px 50px rgba(255, 107, 139, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .glass-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 25px 60px rgba(255, 107, 139, 0.22);
 }
 
@@ -114,14 +114,22 @@ body {
 .small-text {
     font-size: 0.95rem;
     color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+.error-text {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: 500;
 }
 
 .closing-quote {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     color: #616161;
-    margin: 20px 0;
-    font-size: 1.1rem;
+    margin: 15px 0;
+    font-size: 1.05rem;
 }
 
 /* --- Media Image Frames --- */
@@ -181,16 +189,17 @@ body {
 
 .escape-btn {
     position: relative;
-    transition: left 0.1s ease, top 0.1s ease;
+    transition: transform 0.1s ease;
 }
 
 /* --- Inputs CSS --- */
 input[type="password"] {
-    width: 120px;
+    width: 140px;
     padding: 12px;
     border: 2px solid #ffd3de;
     border-radius: 15px;
-    margin: 20px 0;
+    margin: 20px auto;
+    display: block;
     outline: none;
     text-align: center;
     font-size: 1.3rem;
@@ -258,7 +267,7 @@ input[type="password"]:focus {
     font-size: 3.8rem;
     cursor: pointer;
     user-select: none;
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
     animation: floatBalloons 4s ease-in-out infinite alternate;
 }
 .balloon:hover { transform: scale(1.15); }
@@ -275,6 +284,7 @@ input[type="password"]:focus {
     font-weight: 600;
     color: #7b1fa2;
     min-height: 45px;
+    margin-bottom: 15px;
 }
 
 /* --- Stage 4: Candle Mechanics --- */
@@ -290,18 +300,19 @@ input[type="password"]:focus {
     background: linear-gradient(#ffb199, #ff7676);
     margin: 0 auto;
     position: absolute;
-    top: -18px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 4px;
 }
 .candle-flame {
     position: absolute;
-    top: -45px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.8rem;
     animation: dancingFlame 0.6s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
 }
 @keyframes dancingFlame {
     0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
@@ -321,6 +332,12 @@ input[type="password"]:focus {
     transition: transform 0.3s;
 }
 .envelope-container:hover { transform: scale(1.08); }
+
+.env-back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
 .env-top-flap {
     position: absolute;
@@ -404,9 +421,12 @@ input[type="password"]:focus {
 .rainbow-text {
     background: linear-gradient(45deg, #ff4081, #9c27b0, #3f51b5);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     font-weight: bold;
 }
+
 /* Custom Polaroid Fitting for the Final Reveal Image */
 .avatar-container {
     width: 100%;
@@ -426,84 +446,83 @@ input[type="password"]:focus {
     border-radius: 6px;
     display: block;
 }
-/* ==========================================
-   ULTIMATE FINAL ALBUM DISPLAYS 
-========================================== */
 
-/* 1. Stack layout container dimensions */
-.polaroid-stack-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* --- STAGE 8: NEW ROMANTIC GALLERY AND EMOTIONAL CONTENT --- */
+.romantic-gallery {
     position: relative;
-    height: 420px;
-    max-width: 100%;
-    margin: 40px auto 20px;
-}
-
-/* 2. Core polaroid properties */
-.polaroid-memory-card {
-    background: #ffffff;
-    padding: 12px 12px 28px 12px;
-    border-radius: 4px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    position: absolute;
-    max-width: 210px;
-    opacity: 0;
-    transition: transform 0.5s ease;
-}
-
-/* 3. Image sizing within the polaroids */
-.real-us-img {
+    height: 240px;
+    margin: 25px auto;
     width: 100%;
-    height: auto;
-    border: 1px solid #f0f0f0;
-    display: block;
-    border-radius: 2px;
+    max-width: 320px;
 }
 
-/* 4. Elegant caption styling */
-.polaroid-caption {
-    font-family: 'Georgia', serif;
+.album-frame {
+    position: absolute;
+    width: 160px;
+    background: #ffffff;
+    padding: 8px 8px 24px 8px;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.frame-left {
+    left: 15px;
+    top: 10px;
+    transform: rotate(-8deg);
+    z-index: 2;
+}
+
+.frame-right {
+    right: 15px;
+    top: 20px;
+    transform: rotate(6deg);
+    z-index: 1;
+}
+
+/* Interactive Hover Focus Transitions */
+.romantic-gallery:hover .frame-left {
+    transform: translate(-10px, -5px) rotate(-12deg);
+    box-shadow: 0 15px 35px rgba(255, 107, 139, 0.25);
+    z-index: 3;
+}
+
+.romantic-gallery:hover .frame-right {
+    transform: translate(10px, -5px) rotate(10deg);
+    box-shadow: 0 15px 35px rgba(255, 107, 139, 0.25);
+    z-index: 3;
+}
+
+.album-frame:hover {
+    transform: scale(1.15) rotate(0deg) !important;
+    z-index: 5 !important;
+}
+
+.emotional-message-box {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 15px;
+    border: 1px solid rgba(255, 180, 196, 0.3);
+}
+
+.heartfelt-quote {
+    font-family: 'Playfair Display', serif;
     font-style: italic;
-    color: #444;
-    font-size: 0.95rem;
-    margin-top: 12px;
-    text-align: center;
+    font-size: 1.15rem;
+    color: #e0627c;
+    margin-bottom: 12px;
 }
 
-/* 5. Custom smooth springy entry physics for sliding cards */
-.stack-left {
-    animation: slideInLeft 1.6s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
+.emotional-text-lines {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #555555;
+    margin-bottom: 10px;
+    text-align: justify;
 }
 
-.stack-right {
-    animation: slideInRight 1.9s cubic-bezier(0.19, 1, 0.22, 1) 0.6s forwards;
+.font-weight-bold {
+    font-weight: 600;
+    color: #333333;
 }
-
-@keyframes slideInLeft {
-    0% { transform: translate(-150%, 40px) rotate(-35deg); opacity: 0; }
-    100% { transform: translate(-35px, 0) rotate(-6deg); opacity: 1; z-index: 1; }
-}
-
-@keyframes slideInRight {
-    0% { transform: translate(150%, 40px) rotate(35deg); opacity: 0; }
-    100% { transform: translate(35px, 15px) rotate(5deg); opacity: 1; z-index: 2; }
-}
-
-/* 6. Soft text lines sequential reveal */
-.fade-in-line {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: lineRevealEffect 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes lineRevealEffect {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Balanced reading cadence delays */
-.fade-in-line:nth-child(1) { animation-delay: 2.0s; }
-.fade-in-line:nth-child(2) { animation-delay: 3.5s; }
-.fade-in-line:nth-child(3) { animation-delay: 5.5s; }
-.fade-in-line:nth-child(4) { animation-delay: 7.2s; }
