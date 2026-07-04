@@ -190,19 +190,12 @@ function stopPhotoSlideshow() {
 }
 
 // --- Reset / Replay System Engine ---
+// --- Reset / Replay System Engine ---
 function restartExperience() {
     poppedCount = 0;
     revealedWords = [];
     document.getElementById("revealMessage").innerText = "";
     document.getElementById("balloonNextBtn").style.display = "none";
-    stopPhotoSlideshow();
-    
-    // Reset balloon states completely
-    document.querySelectorAll(".balloon").forEach(b => {
-        b.style.transform = "";
-        b.style.opacity = "";
-        b.style.pointerEvents = "";
-    });
     
     document.getElementById("flame").style.display = "block";
     document.getElementById("flame").style.transform = "scale(1)";
@@ -223,9 +216,6 @@ function restartExperience() {
     document.getElementById("finalSub").style.display = "block";
     document.getElementById("finalContent").style.display = "none";
     
-    // Reset passcode gate fields
-    document.getElementById("passwordInput").value = "";
-    document.querySelector(".entry-card").classList.remove("shake");
-    
+    // Explicitly transition back smoothly[cite: 3]
     nextStage(2);
 }
