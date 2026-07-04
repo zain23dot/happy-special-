@@ -20,7 +20,7 @@ function createBackgroundParticles() {
         particle.style.left = Math.random() * 100 + "vw";
         particle.style.fontSize = (Math.random() * 20 + 15) + "px";
         particle.style.animationDuration = (Math.random() * 3 + 4) + "s";
-        
+     
         bgContainer.appendChild(particle);
         
         setTimeout(() => { particle.remove(); }, 7000);
@@ -34,34 +34,44 @@ function checkPassword() {
     const error = document.getElementById("loginError");
     
     if (input === CONFIG.password) {
-        error.style.display = "none";
+        if (error) error.style.display = "none";
         
         // Music Trigger safely handled on interaction frame
         const music = document.getElementById("bgMusic");
-        music.play().catch(() => console.log("Audio contextual trigger queue active."));
+        if (music) {
+            music.play().catch(() => console.log("Audio contextual trigger queue active."));
+        }
 
         nextStage(1);
         
         // Auto-transfer screen transition
         setTimeout(() => { nextStage(2); }, 3000);
     } else {
-        error.style.display = "block";
+        if (error) error.style.display = "block";
+        
         // Shake card effect
         const entryCard = document.querySelector(".entry-card");
-        entryCard.style.animation = "none";
-        setTimeout(() => { entryCard.style.animation = "floatBalloons 0.3s 3 alternate"; }, 10);
+        if (entryCard) {
+            entryCard.style.animation = "none";
+            setTimeout(() => { entryCard.style.animation = "floatBalloons 0.3s 3 alternate"; }, 10);
+        }
     }
 }
 
 // --- Navigation Engine ---
 function nextStage(stageNum) {
     document.querySelectorAll('.stage').forEach(s => s.classList.remove('active-stage'));
-    document.getElementById(`stage${stageNum}`).classList.add('active-stage');
+    const targetStage = document.getElementById(`stage${stageNum}`);
+    if (targetStage) {
+        targetStage.classList.add('active-stage');
+    }
 }
 
 // --- Avoidance Button Interaction ---
 function dodgeButton() {
     const noBtn = document.getElementById("noBtn");
+    if (!noBtn) return;
+    
     const container = noBtn.parentElement;
     const rect = container.getBoundingClientRect();
     
@@ -79,7 +89,6 @@ function popBalloon(element, word) {
     
     // Confetti pop explosion sound simulation
     confetti({ particleCount: 25, spread: 50, origin: { y: 0.6 } });
-    
     revealedWords.push(word);
     document.getElementById("revealMessage").innerText = revealedWords.join(" ");
     
@@ -104,13 +113,12 @@ function blowCandle() {
 function openEnvelope() {
     const topFlap = document.getElementById("topFlap");
     const paper = document.querySelector(".env-paper");
-    
-    topFlap.classList.add("open-flap");
+    if (topFlap) topFlap.classList.add("open-flap");
     
     setTimeout(() => {
-        paper.classList.add("lift-paper");
+        if (paper) paper.classList.add("lift-paper");
     }, 400);
-
+    
     setTimeout(() => {
         document.getElementById("envelope").style.display = "none";
         document.getElementById("paperLetter").style.display = "block";
@@ -121,6 +129,9 @@ function openEnvelope() {
 // --- Typewriter Dynamic Printer ---
 function runTypewriter() {
     const target = document.getElementById("typewriterTarget");
+    if (!target) return;
+    
+    target.innerHTML = ""; // Clear existing text
     let index = 0;
     
     function type() {
@@ -146,8 +157,10 @@ function openFinalGift() {
     var duration = 4 * 1000;
     var animationEnd = Date.now() + duration;
     var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10 };
-
-    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+    
+    function randomInRange(min, max) { 
+        return Math.random() * (max - min) + min;
+    }
 
     var interval = setInterval(function() {
         var timeLeft = animationEnd - Date.now();
@@ -156,7 +169,7 @@ function openFinalGift() {
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
     }, 250);
-
+    
     document.getElementById("finalContent").style.display = "block";
 }
 
@@ -174,8 +187,9 @@ function restartExperience() {
     
     const topFlap = document.getElementById("topFlap");
     const paper = document.querySelector(".env-paper");
-    topFlap.classList.remove("open-flap");
-    paper.classList.remove("lift-paper");
+    if (topFlap) topFlap.classList.remove("open-flap");
+    if (paper) paper.classList.remove("lift-paper");
+    
     document.getElementById("envelope").style.display = "block";
     document.getElementById("paperLetter").style.display = "none";
     document.getElementById("typewriterTarget").innerHTML = "";
@@ -186,8 +200,17 @@ function restartExperience() {
     document.getElementById("finalSub").style.display = "block";
     document.getElementById("finalContent").style.display = "none";
     
+    // Hide the custom extra screen upon restarting if it exists
+    const ultimateScreen = document.getElementById('ultimateLoveScreen');
+    if (ultimateScreen) {
+        ultimateScreen.style.display = 'none';
+        ultimateScreen.style.opacity = '0';
+    }
+    
     nextStage(2);
 }
+
+// --- Extra Custom Screen Functionality ---
 function revealUltimatePage() {
     const ultimateScreen = document.getElementById('ultimateLoveScreen');
     if (!ultimateScreen) return;
