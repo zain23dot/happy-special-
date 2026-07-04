@@ -9,18 +9,27 @@ let revealedWords = [];
 let slideInterval = null;
 
 // --- Live Background Decoration Particle Engine ---
+// --- Live Background Decoration Particle Engine ---
 function createBackgroundParticles() {
     const bgContainer = document.getElementById("heartsBg");
-    const icons = ['💖', '✨', '🎈', '🌹', '🎂'];
+    const icons = ['💖', '✨', '💜', '🌸', '💕'];
     
     setInterval(() => {
         const particle = document.createElement("div");
         particle.classList.add("heart-particle");
         particle.innerText = icons[Math.floor(Math.random() * icons.length)];
         
+        // Dynamic random positioning and coloring details
         particle.style.left = Math.random() * 100 + "vw";
         particle.style.fontSize = (Math.random() * 20 + 15) + "px";
         particle.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        
+        // Randomly apply pink vs purple glow aesthetics
+        if(Math.random() > 0.5) {
+            particle.style.filter = "drop-shadow(0 0 6px #ff6b8b)";
+        } else {
+            particle.style.filter = "drop-shadow(0 0 6px #9c27b0)";
+        }
         
         bgContainer.appendChild(particle);
         
