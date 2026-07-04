@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For summu 💖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style (3).css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&family=Playfair+Display:ital,wght=1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <!-- Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
@@ -27,7 +27,7 @@
             <p>Enter your special 4-digit code</p>
             <input type="password" id="passwordInput" placeholder="••••" maxlength="4">
             <button onclick="checkPassword()" class="btn-primary pulse-anim">Unlock Magic ✨</button>
-            <p id="loginError" class="error-text" style="display: none; color: #ff4771; margin-top: 10px; font-weight: 600;">That's not it, my love! 💕</p>
+            <p id="loginError" class="error-text" style="display: none;">That's not it, my love! 💕</p>
         </div>
     </div>
 
@@ -107,7 +107,7 @@
         <div class="glass-card text-center">
             <h2 class="section-title">A Message From My Heart</h2>
             
-            <!-- Envelope Container -->
+            <!-- Super Smooth Animated Envelope Container -->
             <div id="envelope" class="envelope-container" onclick="openEnvelope()">
                 <div class="env-back">
                     <div class="env-paper">💌 Tap to Open</div>
@@ -140,32 +140,40 @@
 
             <div id="finalContent" style="display: none;">
                 <div class="avatar-container">
-                    <img src="summu.jpg" alt="Celebrate" class="polaroid-img" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=300'">
+                    <img src="summu.jpg" alt="Celebrate" class="polaroid-img">
                 </div>
                 <h2 class="title-text rainbow-text" style="margin-top: 15px;">Lots of love for you! 🥰</h2>
                 <p class="closing-quote">"In all the world, there is no heart for me like yours."</p>
-                <button onclick="nextStage(8)" class="btn-primary pop-hover">Our Memory Lane 💖 ✨</button>
+                <button onclick="nextStage(8)" class="btn-primary pulse-anim" style="margin-top: 10px;">Click for Our Memory 🌸</button>
             </div>
         </div>
     </div>
 
-    <!-- STAGE 8: EXTRA SPECIAL FOREVER PAGE -->
+    <!-- STAGE 8: THE ETERNAL STAGE (OUR MEMORY & SOULFUL WISHES) -->
     <div id="stage8" class="stage">
-        <div class="glass-card text-center special-card">
-            <h2 class="section-title rainbow-text">I Hope You Liked It... 🥹</h2>
+        <div class="glass-card text-center love-grand-card">
+            <h2 class="rainbow-text title-text floating-text">To the One Who Holds My Heart ♾️</h2>
             
-            <!-- Smooth Cross-Fading Picture Slideshow Frame -->
-            <div class="couple-slideshow-frame">
-                <img src="1000028758.png" alt="Us" class="slide-img active-slide">
-                <img src="1000028760_3.png" alt="Together" class="slide-img">
+            <!-- Animated Dual Frame Slider for Both of Us Pictures -->
+            <div class="memory-slider-container">
+                <div class="memory-slide-track">
+                    <div class="memory-frame-card">
+                        <img src="1000028758.png.jpeg" alt="Our Beautiful Moment 1" class="us-img">
+                    </div>
+                    <div class="memory-frame-card">
+                        <img src="1000028760_3.png.jpeg" alt="Our Beautiful Moment 2" class="us-img">
+                    </div>
+                </div>
             </div>
 
-            <div class="emotional-wishes">
-                <p class="wish-para animated-text">I know this image is AI-generated for now, but soon, reality will catch up and we'll replace it with a million real moments of us. Thank you for just being you.</p>
-                <p class="wish-para animated-text font-italic">Every single day, my love for you grows deeper. You hold a place in my heart that no one else ever could. Happy Birthday, my beautiful soul. 🔐❤️</p>
+            <!-- Emotional Sentimental Dedication Message Container -->
+            <div class="emotional-message-box">
+                <p class="emotional-para">I hope you liked everything I put together for you. You mean more to me than words can ever handle, and having us close like this is my favorite place to be. ❤️</p>
+                <p class="emotional-para highlight-note">I know these images are AI generated right now... but I promise you, very soon, we'll replace them with real, unforgettable memories of us standing side by side. For now, please adjust with this little digital dream of mine. 🥺✨</p>
+                <p class="emotional-para deep-wish">May your year be filled with as much light, joy, and peace as you bring into my soul every single day. Happy Birthday, my love. 💖</p>
             </div>
 
-            <button onclick="restartExperience()" class="btn-secondary pop-hover" style="margin-top: 20px;">🔄 Replay Our Story</button>
+            <button onclick="restartExperience()" class="btn-secondary pop-hover" style="margin-top: 25px;">🔄 Replay Experience</button>
         </div>
     </div>
 
