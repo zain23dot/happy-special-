@@ -426,17 +426,22 @@ input[type="password"]:focus {
     border-radius: 6px;
     display: block;
 }
-/* Stack layout container */
+/* ==========================================
+   ULTIMATE FINAL ALBUM DISPLAYS 
+========================================== */
+
+/* 1. Stack layout container dimensions */
 .polaroid-stack-container {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 400px;
+    height: 420px;
     max-width: 100%;
     margin: 40px auto 20px;
 }
 
+/* 2. Core polaroid properties */
 .polaroid-memory-card {
     background: #ffffff;
     padding: 12px 12px 28px 12px;
@@ -445,9 +450,29 @@ input[type="password"]:focus {
     position: absolute;
     max-width: 210px;
     opacity: 0;
+    transition: transform 0.5s ease;
 }
 
-/* Custom smooth Bezier paths for fluid photo sliding motion */
+/* 3. Image sizing within the polaroids */
+.real-us-img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #f0f0f0;
+    display: block;
+    border-radius: 2px;
+}
+
+/* 4. Elegant caption styling */
+.polaroid-caption {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #444;
+    font-size: 0.95rem;
+    margin-top: 12px;
+    text-align: center;
+}
+
+/* 5. Custom smooth springy entry physics for sliding cards */
 .stack-left {
     animation: slideInLeft 1.6s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
 }
@@ -466,7 +491,7 @@ input[type="password"]:focus {
     100% { transform: translate(35px, 15px) rotate(5deg); opacity: 1; z-index: 2; }
 }
 
-/* Soft text reveal animations */
+/* 6. Soft text lines sequential reveal */
 .fade-in-line {
     opacity: 0;
     transform: translateY(20px);
@@ -477,7 +502,7 @@ input[type="password"]:focus {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Reading cadence delays */
+/* Balanced reading cadence delays */
 .fade-in-line:nth-child(1) { animation-delay: 2.0s; }
 .fade-in-line:nth-child(2) { animation-delay: 3.5s; }
 .fade-in-line:nth-child(3) { animation-delay: 5.5s; }
