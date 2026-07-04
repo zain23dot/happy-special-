@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For summu 💖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&family=Playfair+Display:ital,wght@1,600&display=swap\" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
@@ -16,18 +16,84 @@
         <source src="summu music.mp3.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="stage0" class="stage active-stage">
-        <div class="glass-card text-center entry-card">
-            <div class="lock-icon">🔒</div>
-            <h2>A Secret Awaits</h2>
-            <p>Enter your special 4-digit code</p>
-            <input type="password" id="passwordInput" placeholder="••••" maxlength="4">
-            <button onclick="checkPassword()" class="btn-primary pulse-anim">Unlock Magic ✨</button>
-            <p id="loginError" class="error-msg" style="display: none; color: #ff4b72; margin-top: 10px; font-weight: bold;"></p>
-        </div>
-    </div>
-
     <div class="container">
+        
+        <div id="stage0" class="stage active-stage">
+            <div class="glass-card text-center entry-card">
+                <div class="lock-icon" style="font-size: 3rem; margin-bottom: 10px;">🔒</div>
+                <h2>A Secret Awaits</h2>
+                <p>Enter your special 4-digit code</p>
+                <input type="password" id="passwordInput" placeholder="••••" maxlength="4">
+                <button onclick="checkPassword()" class="btn-primary pulse-anim">Unlock Magic ✨</button>
+                <p id="loginError" class="error-msg" style="display: none; color: #ff4b72; margin-top: 10px; font-weight: bold;"></p>
+            </div>
+        </div>
+
+        <div id="stage1" class="stage">
+            <div class="glass-card text-center">
+                <h2 class="rainbow-text" style="font-size: 1.8rem; margin-bottom: 15px;">Hey Sumaiya... 👀</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 25px;">Do you know what day it is today?</p>
+                <div style="display: flex; justify-content: center; gap: 15px; position: relative; min-height: 60px;">
+                    <button onclick="nextStage(2)" class="btn-primary">Yes, of course! 🥰</button>
+                    <button id="noBtn" onmouseover="dodgeButton()" onclick="dodgeButton()" class="btn-secondary" style="position: absolute; right: 20px;">No 🤔</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="stage2" class="stage">
+            <div class="glass-card text-center">
+                <h2>Pop the Balloons! 🎈</h2>
+                <p style="margin-bottom: 20px; color: #666;">Pop them all to reveal a secret phrase!</p>
+                
+                <div class="balloon-container" style="display: flex; justify-content: center; gap: 15px; margin: 30px 0; min-height: 120px;">
+                    <div class="balloon" onclick="popBalloon(this, 'You')" style="background: #ff6b8b; width: 60px; height: 75px; border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; cursor: pointer; display: inline-block; transition: all 0.2s; color: white; line-height: 75px; font-weight: bold;">🎈</div>
+                    <div class="balloon" onclick="popBalloon(this, 'Are')" style="background: #4fc3f7; width: 60px; height: 75px; border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; cursor: pointer; display: inline-block; transition: all 0.2s; color: white; line-height: 75px; font-weight: bold;">🎈</div>
+                    <div class="balloon" onclick="popBalloon(this, 'My')" style="background: #fff176; width: 60px; height: 75px; border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; cursor: pointer; display: inline-block; transition: all 0.2s; color: white; line-height: 75px; font-weight: bold;">🎈</div>
+                    <div class="balloon" onclick="popBalloon(this, 'Everything 💖')" style="background: #ba68c8; width: 60px; height: 75px; border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; cursor: pointer; display: inline-block; transition: all 0.2s; color: white; line-height: 75px; font-weight: bold;">🎈</div>
+                </div>
+
+                <div id="revealMessage" style="font-size: 1.4rem; font-weight: 600; color: #ff4b72; min-height: 30px; margin-bottom: 20px;"></div>
+                <button id="balloonNextBtn" onclick="nextStage(3)" class="btn-primary" style="display: none;">Continue ✨</button>
+            </div>
+        </div>
+
+        <div id="stage3" class="stage">
+            <div class="glass-card text-center">
+                <h2>Make a Wish! 🎂</h2>
+                <p style="color: #666; margin-bottom: 20px;">Blow out the candle to start the celebration</p>
+                
+                <div class="cake-container" style="margin: 40px auto; position: relative; width: 120px;">
+                    <div id="flame" style="width: 160px; height: 24px; background: #ffca28; background: radial-gradient(#fff, #ffb300, transparent); border-radius: 50% 50% 20% 20%; position: absolute; top: -25px; left: -20px; animation: heartPulse 0.5s infinite alternate; z-index: 10; transition: transform 0.3s ease;"></div>
+                    <div style="font-size: 5rem; line-height: 1;">🎂</div>
+                </div>
+
+                <button id="blowBtn" onclick="blowCandle()" class="btn-primary">Blow Candle 🕯️</button>
+                
+                <div id="wishText" style="display: none; margin-top: 20px; animation: fadeInStage 0.6s ease;">
+                    <h3 style="color: #ff4b72; margin-bottom: 15px;">May all your dreams come true! ✨</h3>
+                    <button onclick="nextStage(4)" class="btn-primary">Open Your Letter ✉️</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="stage4" class="stage">
+            <div class="glass-card text-center" style="padding: 20px;">
+                <div id="envelope" onclick="openEnvelope()" style="background: #ff8da1; width: 200px; height: 130px; margin: 40px auto; position: relative; border-radius: 0 0 8px 8px; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                    <div id="topFlap" style="width: 0; height: 0; border-left: 100px solid transparent; border-right: 100px solid transparent; border-bottom: 70px solid #ff6b8b; position: absolute; top: -70px; left: 0; transform-origin: bottom; transition: transform 0.4s; z-index: 3;"></div>
+                    <div class="env-paper" style="background: white; width: 180px; height: 110px; position: absolute; bottom: 10px; left: 10px; transition: transform 0.4s; z-index: 1; border-radius: 4px; padding: 10px; font-size: 0.6rem; color: #aaa; text-align: left;">Dear summu...</div>
+                    <div style="width: 0; height: 0; border-left: 100px solid #ffccd5; border-right: 100px solid #ffccd5; border-bottom: 65px solid transparent; position: absolute; bottom: 0; left: 0; z-index: 4; border-radius: 0 0 8px 8px;"></div>
+                    <div style="width: 0; height: 0; border-left: 100px solid transparent; border-right: 0 solid transparent; border-bottom: 130px solid #ffa4b6; position: absolute; bottom: 0; right: 0; z-index: 2; border-radius: 0 0 8px 0;"></div>
+                    <div style="width: 0; height: 0; border-left: 0 solid transparent; border-right: 100px solid #ffa4b6; border-bottom: 130px solid transparent; position: absolute; bottom: 0; left: 0; z-index: 2; border-radius: 0 0 0 8px;"></div>
+                    <div style="position: absolute; width: 100%; text-align: center; top: 50px; z-index: 5; font-size: 1.5rem;">❤️</div>
+                </div>
+
+                <div id="paperLetter" style="display: none; background: #fffde7; padding: 25px 20px; border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,0,0,0.05); border: 1px solid #f0e6b8; text-align: left; min-height: 200px; margin-bottom: 20px;">
+                    <p id="typewriterTarget" style="font-family: 'Georgia', serif; font-size: 1rem; color: #333; line-height: 1.6; white-space: pre-line;"></p>
+                    <button id="letterNextBtn" onclick="openFinalGift()" class="btn-primary" style="display: none; margin: 20px auto 0; display: block;">See Surprise Gift 🎁</button>
+                </div>
+            </div>
+        </div>
+
         <div id="finalContent" style="display: none; text-align: center;">
             <h2 id="finalTitle" class="title-text rainbow-text">Pop the Gift Box! 🎁</h2>
             <p id="finalSub" class="closing-quote">Something extra special is waiting inside...</p>
@@ -48,5 +114,19 @@
                     </div>
                 </div>
 
-                <div class="emotional-letter" style="text-align: left; margin-top: 30px;">
-                    <p class="letter-line fade-in-line">I really hope you liked this little digital universe I built for
+                <div class="emotional-letter">
+                    <p class="letter-line fade-in-line">I really hope you liked this little digital universe I built for you... 💖</p>
+                    <p class="letter-line fade-in-line">I know the image is AI-generated, but I couldn't resist creating something magical for you. Soon, we'll replace all those digital placeholders with a lifetime of our own real, beautiful memories together. For now, please adjust with this little surprise! 🥰</p>
+                    <p class="letter-line fade-in-line">Please don't mind that I used our photos and poured my heart out like this... I just couldn't hold back because you are truly my love, my happiest place, and my absolute world. 🌸</p>
+                    <p class="letter-line-strong fade-in-line">Happy Birthday, my favorite person. Sumaiya. 🎂✨</p>
+                </div>
+
+                <button onclick="restartExperience()" class="btn-secondary pop-hover" style="margin-top: 30px;">🔄 Replay Our Story</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
