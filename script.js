@@ -190,17 +190,51 @@ function restartExperience() {
 }
 function revealUltimatePage() {
     const ultimateScreen = document.getElementById('ultimateLoveScreen');
-    
+    if (!ultimateScreen) return;
+
+    // 1. Show the section frame
     ultimateScreen.style.display = 'block';
+    
+    // 2. Smoothly ease in the layout container
     setTimeout(() => {
         ultimateScreen.style.opacity = '1';
         ultimateScreen.scrollIntoView({ behavior: 'smooth' });
     }, 100);
 
-    // Ultra dense emotional heart particle spray
-    for (let i = 0; i < 35; i++) {
+    // 3. Dense romantic heart particle burst explosion
+    for (let i = 0; i < 40; i++) {
         setTimeout(() => {
             createHeartParticle();
-        }, i * 50);
+        }, i * 45);
     }
+}
+
+function createHeartParticle() {
+    const heart = document.createElement('div');
+    // Mix up beautiful romantic emojis for extra depth!
+    const heartTypes = ['💖', '❤️', '🌸', '✨'];
+    heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+    
+    heart.style.position = 'fixed';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.bottom = '-5vh';
+    heart.style.fontSize = (Math.random() * 22 + 16) + 'px';
+    heart.style.opacity = Math.random() * 0.6 + 0.4;
+    heart.style.pointerEvents = 'none';
+    heart.style.transition = 'transform 4.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 4.5s ease-out';
+    heart.style.zIndex = '9999';
+    
+    document.body.appendChild(heart);
+    
+    // Smooth transform with random drifts and correct 'deg' rotation angles!
+    setTimeout(() => {
+        const driftX = (Math.random() - 0.5) * 250;
+        const spin = Math.random() * 720 - 360;
+        heart.style.transform = `translateY(-110vh) translateX(${driftX}px) rotate(${spin}deg)`;
+        heart.style.opacity = '0';
+    }, 50);
+    
+    setTimeout(() => {
+        heart.remove();
+    }, 4500);
 }
