@@ -426,80 +426,59 @@ input[type="password"]:focus {
     border-radius: 6px;
     display: block;
 }
-/* Stack layout for two portrait polaroids */
+/* Stack layout container */
 .polaroid-stack-container {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 380px;
+    height: 400px;
     max-width: 100%;
     margin: 40px auto 20px;
 }
 
 .polaroid-memory-card {
     background: #ffffff;
-    padding: 10px 10px 22px 10px;
+    padding: 12px 12px 28px 12px;
     border-radius: 4px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     position: absolute;
-    max-width: 200px;
-    transition: transform 1s ease-in-out;
+    max-width: 210px;
+    opacity: 0;
 }
 
-.real-us-img {
-    width: 100%;
-    height: auto;
-    border: 1px solid #f0f0f0;
-    display: block;
-}
-
-.polaroid-caption {
-    font-family: 'Georgia', serif;
-    font-style: italic;
-    color: #444;
-    font-size: 0.95rem;
-    margin-top: 12px;
-    text-align: center;
-}
-
-/* Staggered entrance states */
+/* Custom smooth Bezier paths for fluid photo sliding motion */
 .stack-left {
-    transform: translateX(-40px) rotate(-6deg);
-    z-index: 1;
-    animation: slideInFromLeft 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: slideInLeft 1.6s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
 }
 
 .stack-right {
-    transform: translateX(40px) rotate(6deg);
-    z-index: 2;
-    animation: slideInFromRight 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: slideInRight 1.9s cubic-bezier(0.19, 1, 0.22, 1) 0.6s forwards;
 }
 
-/* Keyframe Animations */
-@keyframes slideInFromLeft {
-    0% { transform: translateX(-200px) rotate(-20deg); opacity: 0; }
-    100% { transform: translateX(-45px) rotate(-7deg); opacity: 1; }
+@keyframes slideInLeft {
+    0% { transform: translate(-150%, 40px) rotate(-35deg); opacity: 0; }
+    100% { transform: translate(-35px, 0) rotate(-6deg); opacity: 1; z-index: 1; }
 }
 
-@keyframes slideInFromRight {
-    0% { transform: translateX(200px) rotate(20deg); opacity: 0; }
-    100% { transform: translateX(35px) rotate(5deg); opacity: 1; }
+@keyframes slideInRight {
+    0% { transform: translate(150%, 40px) rotate(35deg); opacity: 0; }
+    100% { transform: translate(35px, 15px) rotate(5deg); opacity: 1; z-index: 2; }
 }
 
-/* Elegant Text Fade Transitions */
+/* Soft text reveal animations */
 .fade-in-line {
     opacity: 0;
-    transform: translateY(15px);
-    animation: revealTextLine 0.8s ease-out forwards;
+    transform: translateY(20px);
+    animation: lineRevealEffect 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes revealTextLine {
+@keyframes lineRevealEffect {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Delays for each text segment to create a real typing/reading rhythm */
-.fade-in-line:nth-child(1) { animation-delay: 1.8s; }
-.fade-in-line:nth-child(2) { animation-delay: 2.8s; }
-.fade-in-line:nth-child(3) { animation-delay: 4.0s; }
-.fade-in-line:nth-child(4) { animation-delay: 5.2s; }
+/* Reading cadence delays */
+.fade-in-line:nth-child(1) { animation-delay: 2.0s; }
+.fade-in-line:nth-child(2) { animation-delay: 3.5s; }
+.fade-in-line:nth-child(3) { animation-delay: 5.5s; }
+.fade-in-line:nth-child(4) { animation-delay: 7.2s; }
