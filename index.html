@@ -1,1 +1,184 @@
-nghfgkjgchgg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For summu 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&family=Playfair+Display:ital,wght=1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Floating Background Particles Container -->
+    <div class="floating-hearts" id="heartsBg"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="summu music.mp3.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- STAGE 0: THE PASSCODE GATE -->
+    <div id="stage0" class="stage active-stage">
+        <div class="glass-card text-center entry-card">
+            <div class="lock-icon" style="font-size: 2rem; margin-bottom: 10px;">🔒</div>
+            <h2>A Secret Awaits</h2>
+            <p>Enter your special 4-digit code</p>
+            <input type="password" id="passwordInput" placeholder="••••" maxlength="4">
+            <button onclick="checkPassword()" class="btn-primary pulse-anim">Unlock Magic ✨</button>
+            <p id="loginError" class="error-text" style="display: none;">That's not it, my love! 💕</p>
+        </div>
+    </div>
+
+    <!-- STAGE 1: THE LOADING SCREEN -->
+    <div id="stage1" class="stage">
+        <div class="text-center loading-wrapper">
+            <div class="heart-loader">
+                <div></div><div></div><div></div>
+            </div>
+            <p class="loading-text dynamic-glow">Preparing something special just for you...</p>
+        </div>
+    </div>
+
+    <!-- STAGE 2: THE INTRO QUESTION -->
+    <div id="stage2" class="stage">
+        <div class="glass-card text-center slide-up-card">
+            <h1 class="title-text floating-text">Happy Birthday, Sumaiya 💖</h1>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=300" alt="Celebration Decor" class="hero-img">
+            </div>
+            <p class="question-text">Are you ready to see what I made for you?</p>
+            <div class="btn-group">
+                <button onclick="nextStage(3)" class="btn-primary pop-hover">Yes, let's go! 😍</button>
+                <button id="noBtn" onmouseover="dodgeButton()" onclick="dodgeButton()" class="btn-secondary escape-btn">No 😜</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 3: THE INTERACTIVE BALLOON POPPING GAME -->
+    <div id="stage3" class="stage">
+        <div class="glass-card text-center">
+            <h2 class="section-title">Pop all the balloons to find the message!</h2>
+            <div class="balloon-grid">
+                <div class="balloon b-blue" onclick="popBalloon(this, 'You')">🎈</div>
+                <div class="balloon b-pink" onclick="popBalloon(this, 'are')">🎈</div>
+                <div class="balloon b-green" onclick="popBalloon(this, 'my')">🎈</div>
+                <div class="balloon b-purple" onclick="popBalloon(this, 'everything ✨')">🎈</div>
+            </div>
+            <div id="revealMessage" class="reveal-msg-box"></div>
+            <button id="balloonNextBtn" onclick="nextStage(4)" class="btn-primary reveal-btn" style="display: none;">Next Surprise ➡️</button>
+        </div>
+    </div>
+
+    <!-- STAGE 4: BLOW THE CANDLE -->
+    <div id="stage4" class="stage">
+        <div class="glass-card text-center">
+            <h2 class="title-text">Blow the candle, Sumaiya 💖</h2>
+            <div class="cake-container">
+                <div id="flame" class="candle-flame">🔥</div>
+                <div class="candle-stick"></div>
+                <div class="cake-base">🎂</div>
+            </div>
+            <br>
+            <button id="blowBtn" onclick="blowCandle()" class="btn-primary pulse-anim">💨 Tap to Blow</button>
+            
+            <div id="wishText" class="wish-reveal" style="display: none;">
+                <h1 class="cursive-text">Close your eyes & make a wish...</h1>
+                <button onclick="nextStage(5)" class="btn-primary pop-hover" style="margin-top: 25px;">I've Made My Wish 🤫</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 5: THE ROSE BOUQUET REVEAL -->
+    <div id="stage5" class="stage">
+        <div class="glass-card text-center bouquet-card">
+            <h2 class="section-title">Your Rose Bouquet 🌹</h2>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=300" alt="Rose Bouquet" class="bouquet-img">
+            </div>
+            <p class="sparkle-text">Freshly picked virtual flowers for you!</p>
+            <button onclick="nextStage(6)" class="btn-primary pop-hover" style="margin-top: 20px;">Open My Letter 💌</button>
+        </div>
+    </div>
+
+    <!-- STAGE 6: THE ENVELOPE / TYPEWRITER LETTER -->
+    <div id="stage6" class="stage">
+        <div class="glass-card text-center">
+            <h2 class="section-title">A Message From My Heart</h2>
+            
+            <!-- Super Smooth Animated Envelope Container -->
+            <div id="envelope" class="envelope-container" onclick="openEnvelope()">
+                <div class="env-back">
+                    <div class="env-paper">💌 Tap to Open</div>
+                    <div class="env-left-flap"></div>
+                    <div class="env-right-flap"></div>
+                    <div class="env-bottom-flap"></div>
+                    <div class="env-top-flap" id="topFlap"></div>
+                </div>
+            </div>
+
+            <!-- Typing Paper Sheet -->
+            <div id="paperLetter" class="letter-sheet" style="display: none;">
+                <div id="typewriterTarget" class="letter-text"></div>
+                <div class="text-center">
+                    <button id="letterNextBtn" onclick="nextStage(7)" class="btn-primary reveal-btn" style="display: none; margin-top: 25px;">One last thing... 🎁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 7: THE FINAL GIFT BOX OPENING -->
+    <div id="stage7" class="stage">
+        <div class="glass-card text-center final-card">
+            <h2 id="finalTitle" class="section-title">One Last Thing...</h2>
+            <p id="finalSub" class="small-text">Tap the gift to unwrap your final surprise</p>
+            
+            <div id="giftBox" class="gift-box-wrapper" onclick="openFinalGift()">
+                <div class="gift-body">🎁</div>
+            </div>
+
+            <div id="finalContent" style="display: none;">
+                <div class="avatar-container">
+                    <img src="summu.jpg" alt="Celebrate" class="polaroid-img">
+                </div>
+                <h2 class="title-text rainbow-text" style="margin-top: 15px;">Lots of love for you! 🥰</h2>
+                <p class="closing-quote">"In all the world, there is no heart for me like yours."</p>
+                <button onclick="nextStage(8)" class="btn-primary pulse-anim" style="margin-top: 10px;">Click for something more surprising stuff 🌸</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 8: THE ETERNAL STAGE (OUR MEMORY & SOULFUL WISHES) -->
+    <div id="stage8" class="stage">
+        <div class="glass-card text-center love-grand-card">
+            <h2 class="rainbow-text title-text stage8-title">To the One Who Holds My Heart ♾️</h2>
+            
+            <!-- Two Separate Independent Polaroid Frame Containers -->
+            <div class="premium-photo-container">
+                <div class="cinematic-photo-frame frame-left">
+                    <img src="1000028758.jpg" alt="Our Moment 1" class="couple-display-img">
+                </div>
+                <div class="cinematic-photo-frame frame-right">
+                    <img src="1000028760_3.jpg" alt="Our Moment 2" class="couple-display-img">
+                </div>
+            </div>
+
+            <!-- Three Distinct Sequenced Message Boxes -->
+            <div class="emotional-story-wrapper">
+                <div class="message-box-card box-one">
+                    <p class="emotional-para">I really hope you liked this little digital universe I built for you... 💖✨</p>
+                </div>
+                
+                <div class="message-box-card box-two">
+                    <p class="emotional-para highlight-accent">I know these images are AI generated right now... but my feelings for you are more real than anything else in this world. I promise you, very soon, we're going to replace it with real memories, real smiles, and a lifetime of true snapshots. 🥺❤️</p>
+                </div>
+                
+                <div class="message-box-card box-three">
+                    <p class="emotional-para deep-dedication">Please don't mind that I used our photos and poured my heart out like this... I just couldn't hold back because you are truly my love, my happiest place, and my absolute world. 🌸 You mean the absolute world to me. Happy Birthday to the one who holds my entire heart. 💞</p>
+                </div>
+            </div>
+
+            <button onclick="restartExperience()" class="btn-secondary pop-hover replay-btn-delayed">🔄 Replay Experience</button>
+        </div>
+    </div>
