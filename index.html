@@ -139,18 +139,41 @@
                 <div class="gift-body">🎁</div>
             </div>
 
-            <!-- Ultimate Final Reveal Screen -->
+           <!-- Ultimate Final Reveal Screen -->
             <div id="finalContent" style="display: none;">
                 <div class="avatar-container">
-                    <img src="summu.jpg" alt="Celebrate" class="polaroid-img bounce-in">
+                    <img src="summu.png" alt="Celebrate" class="polaroid-img bounce-in">
                 </div>
                 <h2 class="title-text rainbow-text" style="margin-top: 15px;">Lots of love for you! 🥰</h2>
                 <p class="closing-quote">"In all the world, there is no heart for me like yours."</p>
-                <button onclick="restartExperience()" class="btn-secondary pop-hover">🔄 Replay Experience</button>
+                
+                <button onclick="revealUltimatePage()" class="btn-primary pulse-btn" style="margin-top: 20px; background: linear-gradient(45deg, #ff4b72, #e01b5d);">
+                    Click For One Last Secret... 🤫💖
+                </button>
             </div>
-        </div>
-    </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+            <!-- THE ULTRA-CINEMATIC FINAL ALBUM SCREEN -->
+            <div id="ultimateLoveScreen" style="display: none; opacity: 0; transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1); margin-top: 40px;">
+                <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, #ff4b72, transparent); margin: 30px 0;">
+                
+                <!-- Dual Stacked Polaroid Display -->
+                <div class="polaroid-stack-container">
+                    <div class="polaroid-memory-card stack-left">
+                        <img src="1000028758.png" alt="With You" class="real-us-img">
+                        <div class="polaroid-caption">My favorite smile... 🌸</div>
+                    </div>
+                    <div class="polaroid-memory-card stack-right">
+                        <img src="1000028760_3.png" alt="Us" class="real-us-img">
+                        <div class="polaroid-caption">Us. Forever & Always. ✨</div>
+                    </div>
+                </div>
+
+                <div class="emotional-letter">
+                    <p class="letter-line fade-in-line">I really hope you liked this little digital universe I built for you... 💖</p>
+                    <p class="letter-line fade-in-line">I know the image inside that custom QR code was AI-generated, but I couldn't resist creating something magical for you. Soon, we'll replace all those digital placeholders with a lifetime of our own real, beautiful memories together. For now, please adjust with this little surprise! 🥰</p>
+                    <p class="letter-line fade-in-line">Please don't mind that I used our photos and poured my heart out like this... I just couldn't hold back because you are truly my love, my happiest place, and my absolute world. 🌸</p>
+                    <p class="letter-line-strong fade-in-line">Happy Birthday, my favorite person. Hamesha. 🎂✨</p>
+                </div>
+
+                <button onclick="restartExperience()" class="btn-secondary pop-hover" style="margin-top: 30px;">🔄 Replay Our Story</button>
+            </div>
