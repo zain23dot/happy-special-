@@ -188,3 +188,19 @@ function restartExperience() {
     
     nextStage(2);
 }
+function revealUltimatePage() {
+    const ultimateScreen = document.getElementById('ultimateLoveScreen');
+    
+    ultimateScreen.style.display = 'block';
+    setTimeout(() => {
+        ultimateScreen.style.opacity = '1';
+        ultimateScreen.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+
+    // Ultra dense emotional heart particle spray
+    for (let i = 0; i < 35; i++) {
+        setTimeout(() => {
+            createHeartParticle();
+        }, i * 50);
+    }
+}
