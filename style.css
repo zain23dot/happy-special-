@@ -445,58 +445,106 @@ input[type="password"]:focus {
     display: block;
 }
 
-/* --- STAGE 8: Memory Lane Carousel UI --- */
-.special-card {
+/* --- Stage 8: Enhanced Cinematic Love Layouts --- */
+.love-grand-card {
     max-width: 440px !important;
+    background: rgba(255, 243, 246, 0.93) !important;
+    border: 1.5px solid rgba(255, 182, 193, 0.6) !important;
+    animation: floatingCardEntry 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-.couple-slideshow-frame {
-    position: relative;
+@keyframes floatingCardEntry {
+    0% { opacity: 0; transform: translateY(40px) scale(0.96); filter: blur(4px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* Premium Crossfading Slider Track for Couple Pictures */
+.memory-slider-container {
     width: 100%;
-    max-width: 250px;
-    height: 380px;
-    margin: 0 auto 25px;
-    background: #ffffff;
-    padding: 12px 12px 45px 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 5px 15px rgba(255, 107, 139, 0.1);
-    border-radius: 4px;
+    height: 310px;
+    margin: 15px auto 25px;
+    position: relative;
     overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(255, 107, 139, 0.25);
+    background: #ffffff;
+    padding: 10px;
 }
 
-.slide-img {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    width: calc(100% - 24px);
-    height: calc(100% - 57px);
-    object-fit: cover;
-    opacity: 0;
-    transform: scale(0.96);
-    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 2px;
+.memory-slide-track {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    animation: ultraSmoothSlide 14s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.slide-img.active-slide {
-    opacity: 1;
-    transform: scale(1);
-    z-index: 2;
-}
-
-.emotional-wishes {
-    text-align: left;
-    margin-top: 15px;
+.memory-frame-card {
+    width: 50%;
+    height: 100%;
     padding: 0 5px;
 }
 
-.wish-para {
+.us-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.us-img:hover {
+    transform: scale(1.03);
+}
+
+@keyframes ultraSmoothSlide {
+    0%, 45% { transform: translateX(0); }
+    50%, 95% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* Micro Typography for Emotional Letters */
+.emotional-message-box {
+    text-align: left;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-top: 15px;
+}
+
+/* Custom soft scrollbar formatting */
+.emotional-message-box::-webkit-scrollbar {
+    width: 4px;
+}
+.emotional-message-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 107, 139, 0.4);
+    border-radius: 10px;
+}
+
+.emotional-para {
     font-size: 0.92rem;
     line-height: 1.6;
     color: #4a4a4a;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    font-weight: 400;
 }
 
-.font-italic {
+.highlight-note {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.25), rgba(243, 229, 245, 0.3));
+    padding: 12px;
+    border-left: 3px solid var(--primary);
+    border-radius: 4px;
     font-style: italic;
-    color: #8e24aa;
-    font-weight: 500;
+    font-size: 0.88rem;
+    color: #5c5c5c;
+}
+
+.deep-wish {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #7b1fa2;
+    text-align: center;
+    border-top: 1px dashed rgba(255, 107, 139, 0.2);
+    padding-top: 12px;
 }
