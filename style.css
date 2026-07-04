@@ -426,3 +426,80 @@ input[type="password"]:focus {
     border-radius: 6px;
     display: block;
 }
+/* Stack layout for two portrait polaroids */
+.polaroid-stack-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 380px;
+    max-width: 100%;
+    margin: 40px auto 20px;
+}
+
+.polaroid-memory-card {
+    background: #ffffff;
+    padding: 10px 10px 22px 10px;
+    border-radius: 4px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    position: absolute;
+    max-width: 200px;
+    transition: transform 1s ease-in-out;
+}
+
+.real-us-img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #f0f0f0;
+    display: block;
+}
+
+.polaroid-caption {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #444;
+    font-size: 0.95rem;
+    margin-top: 12px;
+    text-align: center;
+}
+
+/* Staggered entrance states */
+.stack-left {
+    transform: translateX(-40px) rotate(-6deg);
+    z-index: 1;
+    animation: slideInFromLeft 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.stack-right {
+    transform: translateX(40px) rotate(6deg);
+    z-index: 2;
+    animation: slideInFromRight 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Keyframe Animations */
+@keyframes slideInFromLeft {
+    0% { transform: translateX(-200px) rotate(-20deg); opacity: 0; }
+    100% { transform: translateX(-45px) rotate(-7deg); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    0% { transform: translateX(200px) rotate(20deg); opacity: 0; }
+    100% { transform: translateX(35px) rotate(5deg); opacity: 1; }
+}
+
+/* Elegant Text Fade Transitions */
+.fade-in-line {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: revealTextLine 0.8s ease-out forwards;
+}
+
+@keyframes revealTextLine {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Delays for each text segment to create a real typing/reading rhythm */
+.fade-in-line:nth-child(1) { animation-delay: 1.8s; }
+.fade-in-line:nth-child(2) { animation-delay: 2.8s; }
+.fade-in-line:nth-child(3) { animation-delay: 4.0s; }
+.fade-in-line:nth-child(4) { animation-delay: 5.2s; }
