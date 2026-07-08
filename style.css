@@ -482,11 +482,11 @@ input[type="password"]:focus {
 /* Elegant individual rotations per frame box */
 .frame-left {
     animation: smoothPopUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
-    transform: rotate(-3deg);
+    --rot: -3deg;
 }
 .frame-right {
     animation: smoothPopUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
-    transform: rotate(3deg);
+    --rot: 3deg;
 }
 
 /* Three Separate Message Box Frameworks */
@@ -552,7 +552,7 @@ input[type="password"]:focus {
 @keyframes smoothPopUp {
     to {
         opacity: 1;
-        transform: translateY(0) rotate(var(--rot, inherit));
+        transform: translateY(0) rotate(var(--rot, 0deg));
     }
 }
 
@@ -561,4 +561,4 @@ input[type="password"]:focus {
         opacity: 1;
         transform: scale(1) translateY(0);
     }
-}
+    }
