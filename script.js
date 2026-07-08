@@ -1,18 +1,16 @@
 // --- Global Configurations ---
 const CONFIG = {
     password: "2907", // Your custom passcode entry
-    letterText: "Happy Birthday, Sumaiya! 💖\n\nI don't think words will ever be enough to explain what you mean to me, but today I'll still try. You walked into my life so quietly, yet somehow changed everything so loudly. Since you came into my world, even ordinary days feel softer, happier, and more meaningful. You make everything beautiful! ✨"
+    letterText: "Happy Birthday, Sumaiya! 🎂\n\nI don't think words will ever be enough to explain what you mean to me, but today I'll still try. You walked into my life so quietly, yet somehow changed everything so loudly. Since you came into my world, even ordinary days feel softer, happier, and more meaningful. You make everything beautiful! 💖"
 };
 
 let poppedCount = 0;
 let revealedWords = [];
-let slideInterval = null;
 
-// --- Live Background Decoration Particle Engine ---
 // --- Live Background Decoration Particle Engine ---
 function createBackgroundParticles() {
     const bgContainer = document.getElementById("heartsBg");
-    const icons = ['💖', '✨', '💜', '🌸', '💕'];
+    const icons = ['💖', '✨', '🌹', '🎈', '🥰'];
     
     setInterval(() => {
         const particle = document.createElement("div");
@@ -68,13 +66,6 @@ function checkPassword() {
 function nextStage(stageNum) {
     document.querySelectorAll('.stage').forEach(s => s.classList.remove('active-stage'));
     document.getElementById(`stage${stageNum}`).classList.add('active-stage');
-    
-    // If arriving at the final romantic slideshow, launch the photo engine
-    if (stageNum === 8) {
-        startPhotoSlideshow();
-    } else {
-        stopPhotoSlideshow();
-    }
 }
 
 // --- Avoidance Button Interaction ---
@@ -178,33 +169,19 @@ function openFinalGift() {
     document.getElementById("finalContent").style.display = "block";
 }
 
-// --- Stage 8 Crossfade Image Loop ---
-function startPhotoSlideshow() {
-    stopPhotoSlideshow();
-    const slides = document.querySelectorAll(".slide-img");
-    let currentSlide = 0;
-    
-    slideInterval = setInterval(() => {
-        slides[currentSlide].classList.remove("active-slide");
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add("active-slide");
-    }, 3500); // Transitions automatically every 3.5 seconds
-}
-
-function stopPhotoSlideshow() {
-    if (slideInterval) {
-        clearInterval(slideInterval);
-        slideInterval = null;
-    }
-}
-
-// --- Reset / Replay System Engine ---
 // --- Reset / Replay System Engine ---
 function restartExperience() {
     poppedCount = 0;
     revealedWords = [];
     document.getElementById("revealMessage").innerText = "";
     document.getElementById("balloonNextBtn").style.display = "none";
+    
+    // Reset balloons
+    document.querySelectorAll('.balloon').forEach(b => {
+        b.style.transform = "scale(1)";
+        b.style.opacity = "1";
+        b.style.pointerEvents = "auto";
+    });
     
     document.getElementById("flame").style.display = "block";
     document.getElementById("flame").style.transform = "scale(1)";
@@ -225,6 +202,6 @@ function restartExperience() {
     document.getElementById("finalSub").style.display = "block";
     document.getElementById("finalContent").style.display = "none";
     
-    // Explicitly transition back smoothly[cite: 3]
+    // Smooth transition back to introductory dashboard
     nextStage(2);
 }
